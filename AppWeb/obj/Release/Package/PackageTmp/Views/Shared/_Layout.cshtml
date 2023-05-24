@@ -1,0 +1,141 @@
+﻿@using AppWeb.Models;
+@using AppWeb.filtro
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @{
+        Usuarios user = Session["User"] as Usuarios;
+    }
+    <div class="encabezado-info">
+        <div class="container" >
+            <div class="navbar-header"  >
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse" >
+                <ul class="nav navbar-nav">
+                    @if (Autorizacion_rol.IsAuthorized("Usuarios", user))
+                    {
+                        <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+
+                    }
+                    @if (Autorizacion_rol.IsAuthorized("Alumnos", user))
+                    {
+                        <li>@Html.ActionLink("Alumnos", "Index", "AlumnosAdmin")</li>
+
+                    }
+                    @if (Autorizacion_rol.IsAuthorized("Docentes", user))
+                    {
+                        <li>@Html.ActionLink("Docentes", "Index", "Docentes")</li>
+
+                    }
+                    @if (Autorizacion_rol.IsAuthorized("Cursos", user))
+                    {
+                        <li>@Html.ActionLink("Cursos", "Index", "Cursos")</li>
+
+                    }
+                    @if (Autorizacion_rol.IsAuthorized("Materias", user))
+                    {
+                        <li>@Html.ActionLink("Materias", "Index", "Materias")</li>
+
+                    }
+                    @if (Autorizacion_rol.IsAuthorized("MisNotas", user))
+                    {
+                        <li>@Html.ActionLink("Mis Materias", "Index", "MisNotas")</li>
+
+                    }
+                    @if (Autorizacion_rol.IsAuthorized("Reportes", user))
+                    {
+                        <li>@Html.ActionLink("Reportes", "Reporte", "AlumnosAdmin")</li>
+
+                    }
+                    @if (Autorizacion_rol.IsAuthorized("Contraseña", user))
+                    {
+                        <li>@Html.ActionLink("Cambio Contraseña", "CambiarContraseña", "ListadoUsuarios")</li>
+
+                    }
+
+                    @if (Autorizacion_rol.IsAuthorized("Cerrar Sesión", user))
+                    {
+                        <li>@Html.ActionLink("Cerrar Sesión", "Logout", "Acceso")</li>
+                    }
+
+                </ul>
+            </div>
+            <style>
+                .user-info {
+                    text-align: right;
+                }
+
+                    .user-info p {
+                        float: right;
+                        color: white;
+                        
+                    }
+                .encabezado-info {
+                    margin-bottom: 20px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    background: linear-gradient(#525258, #000);
+                    margin-bottom: 20px;
+                }
+                    .encabezado-info a {
+                        color: white;
+                        margin-bottom: -30px;
+                    }
+                .navbar-toggle .icon-bar {
+                    background-color: white;
+
+                }
+                .container {
+                    width: 100%;
+                }
+               
+            </style>
+            @{
+                Usuarios User = Session["User"] as Usuarios;
+            }
+
+            @if (user != null)
+            {
+                <div class="user-info">
+                    <p style="color:white;">Bienvenido, @user.Nombre_Usuario</p>
+                </div>
+            }
+        </div>
+    </div>
+    <div  class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<style>
+    .body-content {
+       
+        margin-bottom: 20px;
+    
+   }
+</style>

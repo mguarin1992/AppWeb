@@ -1,0 +1,54 @@
+﻿@model List<AppWeb.Models.Tablas.TablaAlumnos>
+@using AppWeb.filtro
+@using AppWeb.Models;
+@{
+    ViewBag.Title = "Reporte";
+    Usuarios user = Session["User"] as Usuarios;
+}
+
+<h2>Reporte Alumnos</h2>
+<h4>Ingrese el # de identificación o apellido del alumno a buscar</h4>
+
+<div class="row">
+    <div class="col-lg-4">
+        <form method="post" action="@Url.Action("Reporte", "AlumnosAdmin")">
+            <div class="input-group buscar">
+                <input type="text" class="form-control" placeholder="Buscar alumno..." aria-label="Buscar alumno" aria-describedby="buscar" name="busqueda">
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit" id="btn-buscar-alumno">Buscar</button>
+        </form>
+        <br>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <tr class="fila-encabezado">
+                <th>#</th>
+                <th>Nombres Alumno</th>
+                <th>Apellidos Alumno</th>
+                <th>Identificación</th>
+                <th>Telefono</th>
+                <th>Usuario</th>
+                <th>Curso</th>
+                <th>Materia</th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+                <tr>
+                    <td>@oElemento.Id</td>
+                    <td>@(oElemento.Nombre1 + " " + oElemento.Nombre2)</td>
+                    <td>@(oElemento.Apellido1 + " " + oElemento.Apellido2)</td>
+                    <td>@oElemento.Identificacion</td>
+                    <td>@oElemento.Telefono</td>
+                    <td>@oElemento.Usuario</td>
+                    <td>@oElemento.Curso</td>
+                    <td>@oElemento.Materia</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<a href="@Url.Action("Reporte", new { busqueda = Request.Form["busqueda"], descargar = "true" })" class="btn btn-success">Descargar Reporte</a>

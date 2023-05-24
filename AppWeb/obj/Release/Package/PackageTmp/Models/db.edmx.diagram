@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f770bfa768b348618daafb52848026c2" Name="Diagram1">
+        <EntityTypeShape EntityType="ColegioModel.AlumCur" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColegioModel.Alumnos" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColegioModel.CurDoc" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColegioModel.Cursos" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColegioModel.Docentes" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColegioModel.MatCur" Width="1.5" PointX="10.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColegioModel.Materias" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColegioModel.Notas" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColegioModel.Rol" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ColegioModel.Usuarios" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="ColegioModel.FK_AlumCur_Alumnos" ManuallyRouted="false" />
+        <AssociationConnector Association="ColegioModel.FK_AlumCur_Cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="ColegioModel.FK_Alumnos_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="ColegioModel.FK_Notas_Alumnos" ManuallyRouted="false" />
+        <AssociationConnector Association="ColegioModel.FK_CurDoc_Cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="ColegioModel.FK_CurDoc_Docentes" ManuallyRouted="false" />
+        <AssociationConnector Association="ColegioModel.FK_MatCur_Cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="ColegioModel.FK_Docente_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="ColegioModel.FK_MatCur_Materias" ManuallyRouted="false" />
+        <AssociationConnector Association="ColegioModel.FK_Notas_Materias" ManuallyRouted="false" />
+        <AssociationConnector Association="ColegioModel.FK_Usuarios_Rol" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

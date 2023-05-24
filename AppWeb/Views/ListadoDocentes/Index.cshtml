@@ -1,0 +1,85 @@
+﻿@model AppWeb.Models.Modelos.RegistroDocente
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Agregar Docente</h2>
+
+@using (Html.BeginForm("Nuevo", "ListadoDocentes", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Docentes.Primer_Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Docentes.Primer_Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Docentes.Primer_Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Docentes.Segundo_Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Docentes.Segundo_Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Docentes.Segundo_Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Docentes.Primer_Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Docentes.Primer_Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Docentes.Primer_Apellido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Docentes.Segundo_Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Docentes.Segundo_Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Docentes.Segundo_Apellido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Docentes.Identificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Docentes.Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Docentes.Identificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Docentes.Id_Usuario, "Nombre Usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Docentes.Id_Usuario, Model.ListadoUsuarios)
+                @Html.ValidationMessageFor(model => model.Docentes.Id_Usuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["Message"]
+            </div>
+        }
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

@@ -1,0 +1,72 @@
+﻿@model AppWeb.Models.Modelos.EditarCurso
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Curso</h2>
+
+@using (Html.BeginForm("Editar", "ListadoCursos", FormMethod.Post, new { id = "formulario-editar" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Cursos.Id_Curso)
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cursos.Nombre_Curso, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cursos.Nombre_Curso, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cursos.Nombre_Curso, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @Html.Raw(TempData["Message"])
+            </div>
+        }
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $(document).ready(function () {
+        $('#formulario-editar').submit(function (event) {
+            event.preventDefault(); // prevenir el envío del formulario por defecto
+            $.ajax({
+                url: $(this).attr('action'), // obtener la URL del controlador que manejará el envío del formulario
+                type: $(this).attr('method'), // obtener el método HTTP (POST, GET, PUT, DELETE, etc.) utilizado para enviar el formulario
+                data: $(this).serialize(), // serializar el formulario para enviarlo como datos
+                success: function (response) {
+                    if (response.success) { // si la edición se realizó correctamente
+                        location.reload(); // recargar la página para mostrar los cambios actualizados
+                    } else {
+                        // si se produjo algún error durante la edición, mostrar un mensaje de error en la página
+                        $('#alerta-error').text(response.message);
+                        $('#alerta-error').show();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // si se produjo un error de comunicación con el servidor, mostrar un mensaje de error en la página
+                    $('#alerta-error').text('Error al comunicarse con el servidor.');
+                    $('#alerta-error').show();
+                }
+            });
+        });
+    });
+</script>

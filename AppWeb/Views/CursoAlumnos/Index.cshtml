@@ -1,0 +1,56 @@
+﻿@model AppWeb.Models.Modelos.RegistroAlumnoCurso
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Agregar Alumno a Curso</h2>
+
+@using (Html.BeginForm("Nuevo", "CursoAlumnos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.AlumCur.Id_Alumno, "Nombre Alumno", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.AlumCur.Id_Alumno, Model.ListadoAlumnos)
+            @Html.ValidationMessageFor(model => model.AlumCur.Id_Alumno, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AlumCur.Id_Curso, "Nombre Curso", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.AlumCur.Id_Curso, Model.ListadoCurso)
+            @Html.ValidationMessageFor(model => model.AlumCur.Id_Curso, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crear" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

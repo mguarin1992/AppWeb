@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ColegioEntities-Web.config Connection String" description="ColegioEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Models.db.csdl|res://*/Models.db.ssdl|res://*/Models.db.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=colegio-server.database.windows.net;initial catalog=Colegio;user id=admin1;password=Ultrascali1992+;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\admin\\source\\repos\\AppWeb\\AppWeb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ColegioEntities']/@connectionString" />
+  </parameter>
+</parameters>
